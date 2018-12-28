@@ -17,7 +17,13 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/NishidaYuhei/mktf/lib"
+	"github.com/otiai10/copy"
 	"github.com/spf13/cobra"
+)
+
+const (
+	tfModulesDirPath = "./tf_modules"
 )
 
 // initCmd represents the init command
@@ -31,7 +37,11 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("init called")
+		if lib.CheckExistDir(tfModulesDirPath) {
+			fmt.Printf("%s is exist.\n", tfModulesDirPath)
+			fmt.Printf("Please delete %s.\n", tfModulesDirPath)
+		}
+		copy.Copy("./include_tf_modules", tfModulesDirPath)
 	},
 }
 
