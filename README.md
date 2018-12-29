@@ -1,3 +1,3 @@
 # mktf
 
-mktf is easily create tf files.
+mktf is easily make tf files.
